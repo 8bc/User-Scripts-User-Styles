@@ -1,0 +1,509 @@
+
+/*
+  "black": "#1b1f23",
+  "white": "#fff",
+  "gray": ["#fafbfc", "#f6f8fa", "#e1e4e8", "#d1d5da", "#959da5", "#6a737d", "#586069", "#444d56", "#2f363d", "#24292e"],
+  "blue": ["#f1f8ff", "#dbedff", "#c8e1ff", "#79b8ff", "#2188ff", "#0366d6", "#005cc5", "#044289", "#032f62", "#05264c"],
+  "green": ["#f0fff4", "#dcffe4", "#bef5cb", "#85e89d", "#34d058", "#28a745", "#22863a", "#176f2c", "#165c26", "#144620"],
+  "yellow": ["#fffdef", "#fffbdd", "#fff5b1", "#ffea7f", "#ffdf5d", "#ffd33d", "#f9c513", "#dbab09", "#b08800", "#735c0f"],
+  "orange": ["#fff8f2", "#ffebda", "#ffd1ac", "#ffab70", "#fb8532", "#f66a0a", "#e36209", "#d15704", "#c24e00", "#a04100"],
+  "red": ["#ffeef0", "#ffdce0", "#fdaeb7", "#f97583", "#ea4a5a", "#d73a49", "#cb2431", "#b31d28", "#9e1c23", "#86181d"],
+  "purple": ["#f5f0ff", "#e6dcfd", "#d1bcf9", "#b392f0", "#8a63d2", "#6f42c1", "#5a32a3", "#4c2889", "#3a1d6e", "#29134e"],
+  "pink": ["#ffeef8", "#fedbf0", "#f9b3dd", "#f692ce", "#ec6cb9", "#ea4aaa", "#d03592", "#b93a86", "#99306f", "#6d224f"]
+}
+
+*/
+
+/*disable butons in the top toolbar*/
+#btn_disable, #btn_enable, #btn_reset, #btn_resume, #btn_ackstop, #btn_pause,  #btn_update, #btn_reset { display: none; }
+
+.ui-widget {font-size: 80%;}
+#topdiv{position: fixed; top:0px; left:0px; width:100%; height:36px; /* background: #ddd; */}
+#logodiv{position: fixed; top:10px; left:10px; width:159px; height:54px;}
+#logodiv img{width:159px; height:54px;}
+#topmenu{position: fixed; margin: 0px; padding-top:36px; /* background: #ddd; */ top:0px;height:31px; width:100%; overflow: hidden;}
+#topmenu2{position: fixed; margin: 0px; margin-top:67px; background-color: #3E94D1; top:0px;height:4px; width:100%; overflow: hidden;}
+#topmenu .tabs{margin:0px; font-size:1em;line-height:30px; list-style:none; height:30px; border-bottom:1px solid #fff;}
+#topmenu ul { list-style-type: none; list-style: none;}
+#topmenu .tabs li{float:left; margin-left: 15px; list-style: none;}
+#topmenu .tabs li:first-child{margin-left: 200px;}
+#topmenu .tabs a{position:relative; float:left;padding:0 15px;text-decoration:none; height:29px; bottom:0px;}
+#topmenu .tabs a:hover{background:#3E94D1; color: #fff;}
+#topmenu .tabitem {color: #888; background:#eee; border:1px solid #bbb; border-bottom:0px; border-radius: 0 9px 0 0;}
+#topmenu .seltab {padding: 0px; background:#3E94D1; border:1px solid #fff; border-bottom:1px solid #3E94D1; color: #fff;}
+#content, #content1 {position: fixed; left:0px;top:71px;bottom:21px;right:0px; margin:0px; padding:0px; background:#fff; border:0px solid black; overflow:hidden;}
+#content1 {display: none;}
+
+#footerline, #footer {display: block !important; height:3px; background:#3E94D1; position: fixed; bottom:19px; width:100%;}
+#TestList { position: absolute; }
+#footer{border-top: 1px solid #fff; position: fixed; bottom: 0px; height:16px; width:100%; background: #ddd; overflow:hidden;}
+.topPanel, .topPanel2 {
+position: fixed;
+top: -1px;
+right: 30px;
+width: 100px;
+height: 20px;
+-moz-border-radius: 0px 0px 5px 5px;
+-webkit-border-radius: 0px 0px 5px 5px;
+background-color: #3E94D1;
+text-align: center;
+color: #cccccc;
+border: 1px solid #cccccc;
+padding: 1px;
+}
+.topPanel2 {
+-moz-border-radius: 5px 0px 0px 5px;
+-webkit-border-radius: 5px 0px 0px 5px;
+right: -352px;
+top: 35px;
+width: 370px;
+overflow: hidden;
+}
+.shadow {
+-moz-box-shadow:    0px 0px 3px 3px #bbb;
+-webkit-box-shadow: 0px 0px 3px 3px #bbb;
+box-shadow:         0px 0px 3px 3px #bbb;
+}
+.topPanel:hover	{border-color: #fff; cursor: pointer; color: #fff;}
+#username {
+position: fixed;
+top: 10px;
+left:200px;
+}
+#username span{
+position:absolute;
+margin-top:0;
+padding-top:3px;
+top:0px;
+left: 26px;
+height:24px;
+font-weight: bold;
+font-size: 10pt;
+vertical-align: middle;
+}
+#vsplit{cursor: w-resize;}
+/* top pie chart styles */
+.mpie_chart_text {position: absolute; left:73px; height:15px; border: 0px; overflow: hidden; font-size: 12px; margin: 0px; margin-top: -2px;}
+.mpie_chart_legend {position: absolute; left: 60px; width:6px; height:6px; border: 1px solid black;}
+/* top pie chart styles */
+/* ----- style.css -----END*/
+/* ----- mybtn.css -----*/
+button.mybtn, button.checkbox, button.mybtn:hover, button.mybtn:focus  {
+display:inline-block;
+margin:-4px 0 0 10px;
+padding: 3px 5px 3px 24px;
+font-size:9pt;
+text-decoration:none;
+font-weight:bold;
+cursor:pointer;
+background-color:#f5f5f5;
+border:1px solid black;
+vertical-align: middle;
+-moz-border-radius: 0px 5px 0px 5px;
+-webkit-border-radius: 0px 5px 0px 5px;
+}
+button.btn_prev_next { width: 6em; height: 2em; white-space: nowrap; }
+/* ----- mybtn.css -----END*/
+/* ------ style2.css ----*/
+::-webkit-scrollbar {
+width: 12px;
+}
+::-webkit-scrollbar-track {
+-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+border-radius: 10px;
+-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+#top_panel {
+/*	background-color: #ff0000; */
+height: 30px;
+position: absolute;
+padding: 3px;
+overflow: hidden;
+white-space: nowrap;
+display: inline-block;
+right: 0px;
+left: 0px;
+}
+#lt_panel {
+/*	background-color: #3E94D1; */
+height: 24px;
+position: relative;
+padding: 3px;
+overflow: hidden;
+}
+#tl_header_div {
+position: relative;
+top: 30px;
+left: 0px;
+right: 0px;
+height: 24px;
+overflow: hidden;
+margin: 0;
+padding: 0;
+}
+.table_column {
+position: relative;
+border: 0px;
+padding: 0px;
+margin: 0px;
+display: inline-block;
+white-space: nowrap;
+overflow: hidden;
+height: 24px;
+padding-left:0px;
+padding-right:5px;
+margin-left: 0px;
+border-spacing:0;
+border-collapse: collapse;
+text-indent: 25px;
+border-right: 1px solid #05264c;
+border-left: 1px solid #05264c;
+top: 0px;
+}
+#selall {
+display: inline-block;
+white-space: nowrap;
+overflow: hidden;
+height: 24px;
+border:0;
+padding:0;
+margin:0;
+border-spacing:0;
+border-collapse: collapse;
+}
+#tl_header {
+/* top: -8px;  iPad*/
+top: 0px;
+height: 24px;
+border:0;
+padding:0;
+margin:0;
+border-spacing:0;
+border-collapse: collapse;
+white-space: nowrap;
+position: absolute;
+user-select: none;
+}
+#testlist_hscroll {
+position: absolute;
+overflow: auto;
+top: 0px;
+left: 0px;
+right: 0px;
+bottom: 0px;
+}
+#tl_table_container {
+table-layout: fixed;
+position: absolute;
+top: 54px;
+left: 0px;
+right: 0px;
+bottom: 0px;
+overflow-y: auto;
+overflow-x: auto;
+}
+/*
+#lp_wrapper1{
+background: #f00;
+position: relative;
+bottom: 0px;
+}
+*/
+#dbTestList {
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: moz-none;
+-ms-user-select: none;
+user-select: none;
+}
+#tl_table ::selection { background: transparent;color:inherit; }
+#tl_table ::-moz-selection { background: transparent;color:inherit; }
+#dbTestList ::selection { background: transparent;color:inherit; }
+#dbTestList ::-moz-selection { background: transparent;color:inherit; }
+.tl_col_title {
+overflow: hidden;
+height: 24px;
+width: 100%;
+padding-top: 2px;
+font-size: 11pt;
+font-weight: bold;
+/*display: inline-block;*/
+position: relative;
+}
+#tl_table tr {
+cursor: pointer;
+}
+#selall {
+cursor: pointer;
+}
+.talignL { text-align: left;}
+.talignR { text-align: right;}
+.talignC { text-align: center;}
+.sort_asc {
+background-image: url(images/down.gif);
+background-repeat: no-repeat;
+background-position: left center;
+}
+.sort_desc {
+background-image: url(images/up.gif);
+background-repeat: no-repeat;
+background-position: left center;
+}
+#tl_table tr td:first-child {width:15px;}
+.ti_sel td:first-child {background-image: url(images/tick1.png); background-repeat: no-repeat; /*background-position: center;*/}
+.table_column {cursor: pointer;}
+#quickLogTable tr {
+cursor: pointer;
+}
+#hidder {
+cursor: pointer;
+}
+#mp_good {background-color: #00ff00}
+#mp_bad {background-color: #86181d;}
+#mp_warning {background-color: #ffaaaa;}
+#mp_unknown {background-color: #ffff00;}
+/* ------ style2.css ----END*/
+li.ui-state-default.ui-state-hidden[role=tab]:not(.ui-tabs-active) {
+display: none;
+}
+#monitoring_warning {
+position: fixed;
+display: none;
+top: 2px;
+left: 201px;
+z-index: 100;
+width: 200px;
+}
+#alerts_warning {
+position: fixed;
+display: none;
+top: 2px;
+left: 450px;
+z-index: 100;
+width: 200px;
+}
+span.alerts_text {
+position: absolute;
+top: 5px;
+padding-left: 5px;
+font-size: 14pt;
+}
+#monitoring_warning.fullscreenwarn, #alerts_warning.fullscreenwarn {
+border: 1px solid white;
+top: 30px;
+cursor: pointer;
+}
+
+.monalertenable {
+display: inline-block;
+height: 20px;
+width: 140px;
+cursor: pointer;
+}
+#al_ind {left: 13px;}
+.qlcmc_stopalerts {display: none;}
+.table_column .ui-resizable-handle{
+background-image:none;
+/* background-color:red; */
+}
+body { -webkit-touch-callout: none !important;
+-webkit-user-select: none !important;
+}
+.testitem { -webkit-user-select: none !important; }
+
+
+
+
+
+
+/*hide the char*/
+div[style="position: fixed; top:10px; left:810px; width:180px;"] {display: none;}
+
+#mpie_chart {display: none;}
+
+
+
+
+
+
+
+/*On Windows, use Consolas at 11pt, on a Mac, use something custom*/
+* {font-family: "Iosevka Term SS01", "Consolas", "Cascadia Code" !important;
+    font-size: 12pt !important;
+    line-height: 1.2em !important;
+    text-rendering: optimizeLegibility;
+}
+
+    /* pause dialogue changes*/
+#hmcommand_dlg {font-size: 2em}
+.hightlightAgent {color: white !important}
+
+
+
+
+
+/*Hide Preferences, Hide Toolbar, Log out buttons*/
+#prefBtn, #hideBtn, #logout, #topPanel, #topPanel2 { display: none !important; }
+#alertsMonEnable {display: none !important; }
+
+
+
+/*move the footer with visible test items to the top*/
+#footer { position: absolute; bottom: 0; background: black; border-top: 1px solid black }
+#footerline {display: none !important;}
+.footer_panels {
+display: inline-block;
+position: absolute;
+font-size: 12px;
+padding-top: 0px !important;
+}
+#footer_loader {margin-right: 40px; margin-top: -1px; }
+
+
+
+/*#tl_header_div { height: 20px !important;}*/
+#tl_header {padding-top: 4px; }
+
+#topdiv, #topmenu, #topmenu2 {height: 0px !important; padding-top: 0px !important; }
+
+#logodiv, #username span.mpie_chart_text, #username img, #topmenu > ul.tabs, #alertsMonEnable {display:none}
+
+
+
+/*moves the conent up, so the header is not visible at all.*/
+#content { overflow: hidden; top: 0px !important; background: black;}
+
+
+/*color of Folders, Views, Enable, Disable, …*/
+button.mybtn, button.mybtn:hover, button.mybtn:active, button.mybtn:focus, button.mybtn.tabsel { color: #959da5;  background: black; border: 0; -webkit-border-radius: 0 }
+#tabsel, #lt_panel, #top_panel{background: black; border: 0px !important; }
+.ui-corner-all {border-radius: 0}
+div#lt_panel {padding-top: 0px !important; margin-top: 0px !important;}
+#top_panel {padding-top: 6px;}
+
+#tl_header_div {background-color: #005cc5; }
+.statusid1, .statusid7, .statusid15 { color: #34d058 !important;}
+.statusid3, .statusid4 { color: #ffd33d !important;}
+.statusid2, .statusid8, .statusid10 { color: #ea4a5a !important; }
+.ti_sel { color: #fffdef; background-color: #044289; }
+
+
+
+/*colors in the left sidebar/tree*/
+a.fchildunknown { color: #ffea7f  !important; }
+a.fchildack { color: #ffab70 !important;}
+a.fchildbad { color: #fdaeb7 !important;}
+
+#vsplit { background: #032f62; }
+    #hidder,  #hidder:hover {background: #05264c; height: 100% !important; }
+
+#tl_table td {
+border: 0px;
+border-right:1px solid #05264c; /* separator between table columns */
+padding-left: 3px;
+padding-right: 3px;
+    
+}
+    
+
+div#content {height: 100% !important;}
+div#hmcommand_dlg { height: 180px !important; }
+input#hmcommandrequest { width: 98% !important; font-size: 32px !important }
+textarea#pausecmt { height: 80px !important; font-size: 22px !important }
+/* div.ui-dialog { width: 480px !important; height: 300px !important } */
+
+#tl_table {
+/*	table-layout: fixed; */
+/*	width: 100%; */
+/* border:0;
+padding:0;
+margin:0;
+border-spacing:0; */
+/* border-collapse: collapse; */
+/* user-select: none; */
+}
+#tl_table td{
+/*     overflow: hidden; text-overflow: ellipsis; */
+    text-align: left;
+}
+
+tr.testitem > td:nth-of-type(5) {
+/*     background-color: navy; */
+/*     width: 400px !important; */
+/*     overflow: visible !important;; */
+    overflow: hidden !important;;
+    overflow-wrap: anywhere !important;
+    word-wrap: break-word !important;
+    word-break: break-all !important;
+    overflow-inline: visible;
+
+}
+
+
+
+#testQuickLog table {
+    font-family: Consolas;
+    width: 550px;
+    display: table;
+    border-collapse: separate;
+    box-sizing: border-box;
+    text-indent: initial;
+    border-spacing: 0px;
+    border-color: black;
+    background-color: white
+}
+/* td[colspan="3"] {display: none; } hides quick time log, but also ip address in text in another tab*/
+#testQuickLog table td[bgcolor="#8080FF"] {
+/*     background-color: #34d058; */
+    background-color: black;
+}
+/* #testQuickLog table[bgcolor="#eeeeee"] {
+    background-color: white !important;
+} */
+#testQuickLog tr[class^="statusid"] {
+    background-color: white !important;
+    
+}
+#testQuickLog .statusid1,
+#testQuickLog .statusid7 {
+    color: black !important;
+}
+/* Make yelllow readable on white background */
+#testQuickLog .statusid3 {color: #b08800 !important;}
+/* No connection in red suitable for white background */
+#testQuickLog .statusid8 { color: #b31d28 !important; }
+
+/*   "red": ["#ffeef0", "#ffdce0", "#fdaeb7", "#f97583", "#ea4a5a", "#d73a49", "#cb2431", "#b31d28", "#9e1c23", "#86181d"], */
+
+/* Status “Wait for master” fitting into our color scheme */
+#testQuickLog .statusid11 { color: #6f42c1 ; }
+
+
+#testInfo table, #testQuickLog table {margin-top: 0px; }
+#tprop_tab-1, #tprop_tab-2 { background-color: black; }
+#tprop_tab-1 {width: 800px;}
+
+#testQuickLog > center > table > tbody tr > td {
+border: #ddd 0.5px solid !important;
+}
+
+#tl_table_container br  {
+    content: ' '
+}
+#tl_table_container br:after {
+    content: ' '
+}
+
+
+
+
+#leftPanel { background-color: red; overflow: hidden !important;; width: unset !important; margin-right: -11px !important; padding-right: 0;  }
+#treeDemo {width: unset !important; overflow: hidden !important }
+
+/*mac-specific, possibly – issue with scrollbar handle space still visible, fixed */
+/* #TestList { overflow: hidden !important; } */
+/* #tl_table_container { height: 100% !important; margin-right: -11px; padding-right: 0; } */
