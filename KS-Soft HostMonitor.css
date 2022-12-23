@@ -333,7 +333,7 @@ div[style="position: fixed; top:10px; left:810px; width:180px;"] {display: none;
 
 /*On Windows, use Consolas at 11pt, on a Mac, use something custom*/
 * {font-family: "Iosevka Term SS01", "Consolas", "Cascadia Code" !important;
-    font-size: 12pt !important;
+    font-size: 10pt !important;
     line-height: 1.2em !important;
     text-rendering: optimizeLegibility;
 }
